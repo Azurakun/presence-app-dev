@@ -2,14 +2,30 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\StudentController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth/login');
 });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin', [AdminController::class, 'index'])->name('dashboardadmin');
+});
+
+Route::middleware(['auth', 'teacher'])->group(function () {
+    Route::get('/teacher/dashboard', [TeacherController::class, 'index'])->name('teacher.dashboard');
+});
+
+Route::middleware(['auth', 'student'])->group(function () {
+    Route::get('/student/dashboard', [StudentController::class, 'index'])->name('student.dashboard');
+});
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -17,8 +33,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('dashboardadmin', function () {
-    return view('dashboardadmin');
+Route::get('/admin/dashboard', function () {
+    return view('dashboard');
 });
 
 Route::get('createqr', function () {

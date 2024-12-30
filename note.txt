@@ -1,0 +1,20 @@
+1. QR code per ruangan saja, jadi fetching data ID nya saja
+2. admin dashboard bisa buat qr, dan fetching history absensi dari guru dan siswa
+
+create a website that can be used to make a presence on-click. this presence will be used by students to make an attendance daily on the website. There will be 3 user, Teacher, students, and admin. The teacher will be able to scan the qr as well as students, and the admin will be able to manage the presence history. So the system works like this:
+
+attendance route:
+Admin Create QR code for each room -> Students & Teacher scans the QR -> data sent to presence_history database
+
+ Here's the requirements: Using laravel, tailwind, javascript, with a db & project name goes with 'presence_app'. 
+
+Please make me the landing page that is fitting for that purposes. make sure the landing page is interactive and is using animations. Might as well add news of the school to it that could be added via admin dashboard later. make sure per web pages are fits on the screen.
+
+use php as well for the pages.
+
+take a reference from below:
+https://naistudio.com/
+
+
+ERD:
+QR_code: qr_id, code, class_assigned
