@@ -32,14 +32,16 @@
 
         <!-- Role Selection -->
         <div class="mt-4">
-            <x-input-label for="role" :value="__('Role')" />
-            <select id="role" name="account_type" class="block mt-1 w-full">
+            <x-input-label for="account_type" :value="__('Role')" />
+            <select id="account_type" name="account_type" class="block mt-1 w-full" required>
+                <option value="">Select a role</option> <!-- Optional placeholder -->
                 <option value="Admin">Admin</option>
                 <option value="Teacher">Teacher</option>
                 <option value="Student">Student</option>
             </select>
             <x-input-error :messages="$errors->get('account_type')" class="mt-2" />
         </div>
+
 
         <div class="flex items-center justify-end mt-4">
             <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">

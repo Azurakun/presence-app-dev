@@ -9,10 +9,17 @@ use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\ClassController;
 >>>>>>> Stashed changes
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 
 Route::get('/', function () {
     return view('auth/login');
 });
+
+
+
+
+Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
+Route::post('/register', [RegisteredUserController::class, 'store']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
