@@ -151,22 +151,55 @@
         });
     
         document.getElementById('saveKelasBtn').addEventListener('click', function() {
-            const formData = new FormData(document.getElementById('addKelasForm'));
-    
-            fetch('save_kelas.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(result => {
-                if (result.success) {
-                    alert('Data kelas berhasil disimpan.');
-                    window.location.href = '/admin'; // Redirect ke halaman admin
-                } else {
-                    alert('Gagal menyimpan data kelas.');
-                }
-            });
+        const formData = new FormData(document.getElementById('addKelasForm'));
+
+        fetch('/save_kelas', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            console.log(response); // Tambahkan log untuk melihat respons
+            return response.json();
+        })
+        .then(result => {
+            console.log(result); // Tambahkan log untuk melihat hasil
+            if (result.success) {
+                alert('Data kelas berhasil disimpan.');
+                window.location.href = '/dashboardadmin'; // Redirect ke halaman dashboard admin
+            } else {
+                alert('Gagal menyimpan data kelas.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error); // Tangkap dan log kesalahan
+            alert('Terjadi kesalahan saat menyimpan data kelas.');
         });
+        function saveEditForm() {
+        const formData = new FormData(document.getElementById('editFormData'));
+
+        fetch('/update_kelas', { // Pastikan Anda memiliki route ini
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            console.log(response); // Log respons
+            return response.json();
+        })
+        .then(result => {
+            console.log(result); // Log hasil
+            if (result.success) {
+                alert('Data berhasil diupdate');
+                fetchKelasData();
+                hideEditForm();
+            } else {
+                alert('Gagal mengupdate data');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error); // Tangkap dan log kesalahan
+            alert('Terjadi kesalahan saat mengupdate data.');
+        });
+    });
     </script>
 </body>
 </html>

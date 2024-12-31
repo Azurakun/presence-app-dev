@@ -10,7 +10,7 @@
     <!-- Menu -->
     <ul class="nav flex-column">
         <li class="nav-item mb-2">
-            <a href="{{ url('dashboard') }}" class="nav-link text-white">
+            <a href="{{ url('dashboardadmin') }}" class="nav-link text-white">
                 <i class="fas fa-tachometer-alt me-2"></i>Dashboard
             </a>
         </li>

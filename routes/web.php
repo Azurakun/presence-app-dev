@@ -2,8 +2,12 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+<<<<<<< Updated upstream
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\TeacherController;
+=======
+use App\Http\Controllers\ClassController;
+>>>>>>> Stashed changes
 use App\Http\Controllers\StudentController;
 
 Route::get('/', function () {
@@ -40,5 +44,13 @@ Route::get('/admin/dashboard', function () {
 Route::get('createqr', function () {
     return view('createqr');
 });
+
+Route::get('siswa', function () {
+    return view('siswa');
+});
+
+Route::post('/save_kelas', [ClassController::class, 'save']);
+Route::get('/fetch_kelas', [ClassController::class, 'fetchKelas']);
+Route::post('/update_kelas', [ClassController::class, 'update']);
 
 require __DIR__.'/auth.php';

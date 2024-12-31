@@ -16,14 +16,11 @@
 
         <!-- Main Content -->
         <div class="flex-grow-1 p-4">
-            @yield('content')
-
             <h1 class="mb-4">Dashboard Admin</h1>
 
             <!-- Table of Classes with Barcodes -->
             <div class="card">
                 <div class="card-header text-white" style="background-color: #24313d;">
-                    <!-- Tambahkan text-align: center di inline style -->
                     <h5 style="margin: 0;">Kelas dengan Barcode</h5>
                 </div>
                 <div class="card-body">
@@ -95,7 +92,7 @@
         });
 
         function fetchKelasData() {
-            fetch('fetch_kelas.php')
+            fetch('/fetch_kelas') // Pastikan Anda memiliki route ini
                 .then(response => response.json())
                 .then(data => {
                     const tableBody = document.getElementById('kelasTableBody');
@@ -103,7 +100,7 @@
                     data.forEach((kelas, index) => {
                         const row = `<tr>
                             <td>${index + 1}</td>
-                            <td>${kelas.id}</td>
+                            <td>${kelas.id_kelas}</td>
                             <td>${kelas.nama_kelas}</td>
                             <td>${kelas.nama_guru}</td>
                             <td>${kelas.mata_pelajaran}</td>
@@ -116,7 +113,7 @@
                                         Aksi
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#" onclick="showEditForm('${kelas.id}', '${kelas.nama_kelas}', '${kelas.nama_guru}', '${kelas.mata_pelajaran}', '${kelas.jam_pengajaran}', ${kelas.jumlah_siswa})">Edit</a></li>
+                                        <li><a class="dropdown-item" href="#" onclick="showEditForm('${kelas.id_kelas}', '${kelas.nama_kelas}', '${kelas.nama_guru}', '${kelas.mata_pelajaran}', '${kelas.jam_pengajaran}', ${kelas.jumlah_siswa})">Edit</a></li>
                                         <li><a class="dropdown-item" href="#">Hapus</a></li>
                                         <li><a class="dropdown-item" href="#">Lihat Detail</a></li>
                                     </ul>
@@ -131,7 +128,7 @@
         function saveEditForm() {
             const formData = new FormData(document.getElementById('editFormData'));
 
-            fetch('update_kelas.php', {
+            fetch('/update_kelas', { // Pastikan Anda memiliki route ini
                 method: 'POST',
                 body: formData
             })
