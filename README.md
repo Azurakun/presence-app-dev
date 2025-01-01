@@ -10,8 +10,8 @@ This project is a web application built with Laravel, designed to help students 
 - **User Authentication**: Users can register, log in, and manage their accounts.
 - **Role Management**: Different user roles (Admin, Teacher, Student) with specific permissions.
 - **Dashboard**: A user-friendly dashboard for managing user data and activities.
-- **Responsive Design**: The application is designed to be mobile-friendly and accessible on various devices.
-- **Secure**: Implements best practices for security, including password hashing and validation.
+- **Responsive Design**: The application is designed to be mobile-friendly and accessible on various devices. (Coming Soon)
+- **Secure**: Implements best practices for security, including password hashing and validation. (Coming Soon)
 
 ## Technologies Used
 
