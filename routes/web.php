@@ -2,12 +2,10 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-<<<<<<< Updated upstream
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\TeacherController;
-=======
 use App\Http\Controllers\ClassController;
->>>>>>> Stashed changes
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 
@@ -15,19 +13,14 @@ Route::get('/', function () {
     return view('auth/login');
 });
 
-
+Route::post('/login', [Controller::class, 'login'])->name('login');
+Route::post('/logout', [Controller::class, 'logout'])->name('logout');
 
 
 Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
 Route::post('/register', [RegisteredUserController::class, 'store']);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/admin', [AdminController::class, 'index'])->name('dashboardadmin');
-});
+Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('dashboard');
 
 Route::middleware(['auth', 'teacher'])->group(function () {
     Route::get('/teacher/dashboard', [TeacherController::class, 'index'])->name('teacher.dashboard');

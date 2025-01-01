@@ -2,20 +2,6 @@
 
 namespace App\Http\Controllers;
 
-<<<<<<< Updated upstream
-   use Illuminate\Http\Request;
-
-   class StudentController extends Controller
-   {
-       /**
-        * Show the student dashboard.
-        */
-       public function index()
-       {
-           return view('student.dashboard');
-       }
-   }
-=======
 use App\Models\Student;
 use Illuminate\Http\Request;
 
@@ -29,4 +15,3 @@ class StudentController extends Controller
         return view('profile.siswa', compact('student')); // Pastikan path ini benar
     }
 }
->>>>>>> Stashed changes
