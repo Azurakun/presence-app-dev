@@ -14,6 +14,15 @@
         <!-- Sidebar -->
         @include('layouts.sidebar')
 
+        @extends('layouts.app')
+
+@section('content')
+<div class="container">
+    <h1>Admin Dashboard</h1>
+    <p>Welcome to the admin dashboard!</p>
+    <!-- Tambahkan konten dashboard admin di sini -->
+</div>
+@endsection
         <!-- Main Content -->
         <div class="flex-grow-1 p-4">
             <h1 class="mb-4">Dashboard Admin</h1>
@@ -43,7 +52,7 @@
                         </tbody>
                     </table>
                 </div>
-            </div>            
+            </div>
 
             <!-- Edit Form -->
             <div id="editForm" class="card mt-4 d-none">
