@@ -8,24 +8,23 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 <body>
+    
     @include('layouts.navbar')
 
     <div class="d-flex">
         <!-- Sidebar -->
         @include('layouts.sidebar')
 
-        @extends('layouts.app')
-
-@section('content')
-<div class="container">
-    <h1>Admin Dashboard</h1>
-    <p>Welcome to the admin dashboard!</p>
-    <!-- Tambahkan konten dashboard admin di sini -->
-</div>
-@endsection
         <!-- Main Content -->
         <div class="flex-grow-1 p-4">
-            <h1 class="mb-4">Dashboard Admin</h1>
+            @extends('layouts.app')
+
+            @section('content')
+            <div class="container">
+                <h1>Admin Dashboard</h1>
+                <p>Welcome to the admin dashboard!</p>
+                <!-- Tambahkan konten dashboard admin di sini -->
+            </div>
 
             <!-- Table of Classes with Barcodes -->
             <div class="card">
@@ -90,6 +89,7 @@
                     </form>
                 </div>
             </div>
+            @endsection
         </div>
     </div>
 
