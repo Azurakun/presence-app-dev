@@ -21,6 +21,6 @@ class AdminMiddleware
             return $next($request);
         }
 
-        return redirect('/'); // Redirect to home or an appropriate page
+        return redirect('admin/dashboard/dashboardadmin'); // Redirect to home or an appropriate page
     }
 }

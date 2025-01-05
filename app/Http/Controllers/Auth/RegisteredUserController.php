@@ -40,7 +40,7 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'account_type' => $request->account_type, // Save the selected role
+            'account_type' => $request->account_type, // Ensure this line is present
         ]);
 
         event(new Registered($user));
@@ -49,4 +49,6 @@ class RegisteredUserController extends Controller
 
         return redirect(route('dashboard', absolute: false));
     }
+
+
 }

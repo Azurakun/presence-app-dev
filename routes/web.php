@@ -2,11 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\StudentController;
-use App\Http\Controllers\KelasController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 
 Route::get('/', function () {
     return view('auth/login');
@@ -16,11 +18,8 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-// Rute untuk admin
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/admin', function () {
-        return view('admin.dashboard.admindashboard'); // Mengarahkan ke views/admin/dashboard/admindashboard.blade.php
-    })->name('dashboardadmin');
+    Route::get('/admin', [AdminController::class, 'index'])->name('dashboardadmin');
 });
 
 // Rute untuk guru
