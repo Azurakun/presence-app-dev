@@ -87,6 +87,7 @@
                             <!-- Form Section -->
                             <div class="form-section">
                                 <form id="addKelasForm">
+                                    @csrf <!-- CSRF Token -->
                                     <div class="mb-1">
                                         <label for="idKelas" class="form-label">ID Kelas</label>
                                         <input type="text" class="form-control" id="idKelas" name="idKelas" required>
@@ -133,36 +134,36 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script>
         document.getElementById('addKelasForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-    
+            event.preventDefault(); // Mencegah form dari pengiriman default
+
             const idKelas = document.getElementById('idKelas').value;
             const namaKelas = document.getElementById('namaKelas').value;
-    
+
             const qrCodeContainer = document.getElementById('qrCodeContainer');
-            qrCodeContainer.innerHTML = '';
-    
+            qrCodeContainer.innerHTML = ''; // Kosongkan konten sebelumnya
+
+            // Membuat QR Code
             new QRCode(qrCodeContainer, {
                 text: `ID: ${idKelas}\nNama Kelas: ${namaKelas}`, // Menggunakan backtick `` untuk template string
                 width: 150,
                 height: 150,
             });
-    
-            document.getElementById('saveKelasBtn').style.display = 'block';
+
+            document.getElementById('saveKelasBtn').style.display = 'block'; // Tampilkan tombol simpan
         });
-    
+
         document.getElementById('saveKelasBtn').addEventListener('click', function() {
         const formData = new FormData(document.getElementById('addKelasForm'));
 
         fetch('/save_kelas', {
             method: 'POST',
-            body: formData
+            body: formData,
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value // Include CSRF token
+            }
         })
-        .then(response => {
-            console.log(response); // Tambahkan log untuk melihat respons
-            return response.json();
-        })
+        .then(response => response.json())
         .then(result => {
-            console.log(result); // Tambahkan log untuk melihat hasil
             if (result.success) {
                 alert('Data kelas berhasil disimpan.');
                 window.location.href = '/dashboardadmin'; // Redirect ke halaman dashboard admin
@@ -173,31 +174,6 @@
         .catch(error => {
             console.error('Error:', error); // Tangkap dan log kesalahan
             alert('Terjadi kesalahan saat menyimpan data kelas.');
-        });
-        function saveEditForm() {
-        const formData = new FormData(document.getElementById('editFormData'));
-
-        fetch('/update_kelas', { // Pastikan Anda memiliki route ini
-            method: 'POST',
-            body: formData
-        })
-        .then(response => {
-            console.log(response); // Log respons
-            return response.json();
-        })
-        .then(result => {
-            console.log(result); // Log hasil
-            if (result.success) {
-                alert('Data berhasil diupdate');
-                fetchKelasData();
-                hideEditForm();
-            } else {
-                alert('Gagal mengupdate data');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error); // Tangkap dan log kesalahan
-            alert('Terjadi kesalahan saat mengupdate data.');
         });
     });
     </script>
