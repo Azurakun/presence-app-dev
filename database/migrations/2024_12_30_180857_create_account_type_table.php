@@ -13,6 +13,8 @@ class CreateAccountTypeTable extends Migration
             $table->string('type_name')->unique(); // Kolom untuk nama tipe akun, harus unik
             $table->text('description')->nullable(); // Kolom untuk deskripsi tipe akun, bisa null
             $table->timestamps(); // Kolom created_at dan updated_at
+            $table->string('account_type')->after('password');
+
         });
     }
 

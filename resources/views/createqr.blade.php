@@ -153,29 +153,29 @@
         });
 
         document.getElementById('saveKelasBtn').addEventListener('click', function() {
-            const formData = new FormData(document.getElementById('addKelasForm'));
+        const formData = new FormData(document.getElementById('addKelasForm'));
 
-            fetch('/save_kelas', {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value // Include CSRF token
-                }
-            })
-            .then(response => response.json())
-            .then(result => {
-                if (result.success) {
-                    alert('Data kelas berhasil disimpan.');
-                    window.location.href = '/dashboardadmin'; // Redirect ke halaman dashboard admin
-                } else {
-                    alert('Gagal menyimpan data kelas.');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error); // Tangkap dan log kesalahan
-                alert('Terjadi kesalahan saat menyimpan data kelas.');
-            });
+        fetch('/save_kelas', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value // Include CSRF token
+            }
+        })
+        .then(response => response.json())
+        .then(result => {
+            if (result.success) {
+                alert('Data kelas berhasil disimpan.');
+                window.location.href = '/dashboardadmin'; // Redirect ke halaman dashboard admin
+            } else {
+                alert('Gagal menyimpan data kelas.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error); // Tangkap dan log kesalahan
+            alert('Terjadi kesalahan saat menyimpan data kelas.');
         });
+    });
     </script>
 </body>
 </html>

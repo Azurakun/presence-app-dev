@@ -1,26 +1,22 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Models;
 
-use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class KelasController extends Controller
+class Kelas extends Model
 {
-    public function store(Request $request)
-    {
-        // Validate the incoming request data
-        $request->validate([
-            'idKelas' => '  required|string',
-            'namaKelas' => 'required|string',
-            'namaGuru' => 'required|string',
-            'mataPelajaran' => 'required|string',
-            'jamPengajaran' => 'required|string',
-            'jumlahSiswa' => 'required|integer',
-        ]);
+    use HasFactory;
 
-        // Save the data to the database (assuming you have a Kelas model)
-        // Kelas::create($request->all());
-
-        return response()->json(['success' => true]);
-    }
+    protected $table = 'kelas'; // Nama tabel di database
+    protected $fillable = [
+        'id_kelas',
+        'nama_kelas',
+        'nama_guru',
+        'mata_pelajaran',
+        'jam_pengajaran',
+        'jumlah_siswa',
+        'qr_code', // Tambahkan ini jika Anda menyimpan QR Code
+    ];
 }

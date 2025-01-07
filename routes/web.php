@@ -8,6 +8,7 @@ use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Auth\KelasController;
 
 Route::get('/', function () {
     return view('auth/login');
@@ -63,7 +64,9 @@ Route::get('/dashboard', function () {
 
 Route::post('/save_kelas', [KelasController::class, 'store']);
 
+Route::post('/save_kelas', [ClassController::class, 'store']);
 
+Route::post('/save_kelas', [ClassController::class, 'store']);
 
 // Mengimpor rute autentikasi
 require __DIR__.'/auth.php';
