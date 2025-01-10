@@ -40,7 +40,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($kelas as $item)
+                        @if(isset($kelas) && count($kelas) > 0)
+                            @foreach($kelas as $item)
                         <tr>
                             <td>{{ $item->id_kelas }}</td>
                             <td>{{ $item->nama_kelas }}</td>
@@ -60,7 +61,8 @@
                             </td>
                         </tr>
                         @endforeach
-                    </tbody>
+                        }
+                    @endif
                 </table>
             </div>
         </div>
